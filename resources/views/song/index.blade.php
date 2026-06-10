@@ -6,7 +6,7 @@
         <div class="header-cell">TITOLO_TRACCIA</div>
         <div class="header-cell">ARTISTA</div>
         <div class="header-cell">ALBUM</div>
-        <div class="header-cell">AZIONI</div>
+        <div class="header-cell">IMMAGINE</div>
     </div>
 
     @foreach($songs as $song)
@@ -18,15 +18,14 @@
             </div>
             <div class="row-cell">{{ $song->artist }}</div>
             <div class="row-cell">{{ $song->album }}</div>
-            <div class="row-cell cell-actions">
-                <a href="#" class="action-link">[ EDIT ]</a>
-                <a href="#" class="action-link delete">[ DEL ]</a>
+            <div class="row-cell">
+                <img src="{{ Storage::url(ltrim($song->img ?? 'media/default.png', '/')) }}" alt="{{ $song->title }}">
             </div>
         </div>
     @endforeach
 
     <div class="cos-table-footer">
-        TOTALE_ENTRIES: {{ count($songs) }} // END_OF_LIST
+        TOTALE_ENTRIES: {{ count($songs) }} 
     </div>
 </section>
 

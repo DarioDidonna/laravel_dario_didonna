@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SongRequest;
+use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Models\Song;
 
 class SongController extends Controller
 {
@@ -13,7 +14,7 @@ class SongController extends Controller
         return view('song.create');
     }
 
-    public function store(Request $request)
+    public function store(SongRequest $request)
     {
 
         if (!$request->filled(['title', 'artist', 'album', 'description'])) {
@@ -33,6 +34,8 @@ class SongController extends Controller
             'artist' => $request->artist,
             'album' => $request->album,
             'description' => $request->description,
+
+            'img' => $request->file('img') ? $request->file('img')->store('images', 'public') : 'media/default.png'
         ]);
 
 
